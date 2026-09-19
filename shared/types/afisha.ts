@@ -154,3 +154,23 @@ export interface SearchResponse {
   /** Источники, чей последний сбор упал: часть событий может отсутствовать */
   failedSources: SourceInfo[]
 }
+
+export interface QuizOption {
+  value: string
+  label: string
+  /** Сколько событий останется, если выбрать этот ответ */
+  count: number
+}
+
+export interface QuizQuestion {
+  key: FilterKey
+  text: string
+  options: QuizOption[]
+}
+
+export interface QuizStep {
+  /** Сколько событий подходит под ответы */
+  remaining: number
+  /** Следующий вопрос; null — спрашивать больше нечего */
+  question: QuizQuestion | null
+}

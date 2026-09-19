@@ -24,6 +24,7 @@ async function signOut() {
         <nav class="nav" aria-label="Разделы">
           <NuxtLink to="/events">События</NuxtLink>
           <NuxtLink to="/search">Поиск</NuxtLink>
+          <NuxtLink to="/quiz">Квиз</NuxtLink>
           <NuxtLink to="/sources">Источники</NuxtLink>
         </nav>
         <div class="account">
