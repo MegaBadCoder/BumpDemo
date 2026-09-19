@@ -14,19 +14,28 @@ const scenarios = [
 
 const more = [
   {
+    title: 'Не знаю, чего хочу',
+    note: 'Пара простых вопросов — и сервис сам сузит выбор',
+    to: '/quiz',
+    soon: false
+  },
+  {
     title: 'Собери мне вечер',
     note: 'Событие, ужин и прогулка рядом: маршрут с временем на дорогу и общей суммой',
-    to: '/evening'
+    to: '/evening',
+    soon: true
   },
   {
     title: 'Пермь, которую ты не знаешь',
     note: 'Необычные площадки и районные инициативы',
-    to: '/collection/neznakomaya-perm'
+    to: '/collection/neznakomaya-perm',
+    soon: true
   },
   {
     title: 'На выходные',
     note: 'Подборка на ближайшие субботу и воскресенье',
-    to: '/collection/na-vyhodnye'
+    to: '/collection/na-vyhodnye',
+    soon: true
   }
 ]
 </script>
@@ -77,7 +86,7 @@ const more = [
       <h2>Ещё способы выбрать</h2>
       <div class="grid">
         <NuxtLink v-for="item in more" :key="item.to" :to="item.to" class="tile">
-          <span class="badge badge-stub">скоро</span>
+          <span v-if="item.soon" class="badge badge-stub">скоро</span>
           <strong>{{ item.title }}</strong>
           <span class="muted">{{ item.note }}</span>
         </NuxtLink>

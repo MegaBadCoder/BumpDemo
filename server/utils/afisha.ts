@@ -60,6 +60,12 @@ export function listUpcomingEvents(now = new Date()): EventSummary[] {
   return findMatches(buildMockEvents(now), {}, now).map(match => toSummary(match, null))
 }
 
+/** Следующий вопрос квиза. События читаются один раз, варианты ответов считаются в памяти */
+export function quizStep(filters: SearchFilters, skipped: FilterKey[], now = new Date()): QuizStep {
+  const events = buildMockEvents(now)
+  return nextQuizStep(filters, skipped, conditions => findMatches(events, conditions, now).length)
+}
+
 interface Match {
   event: EventDetails
   sessions: EventSession[]
