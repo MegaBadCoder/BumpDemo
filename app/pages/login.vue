@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// До входа шапка с разделами не нужна
+definePageMeta({ layout: false })
+
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const { demoEmail, demoPassword } = useRuntimeConfig().public
