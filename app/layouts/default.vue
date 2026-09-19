@@ -2,6 +2,12 @@
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 
+const socialLinks = [
+  { label: 'Rutube', href: 'https://rutube.ru/shorts/e7929d5c105345556124fbcb87bfe1b1/' },
+  { label: 'Дзен', href: 'https://dzen.ru/id/6aae68e81f92461355c6ed0c' },
+  { label: 'ВКонтакте', href: 'https://vk.ru/club241603191' }
+]
+
 async function signOut() {
   await supabase.auth.signOut()
   await navigateTo('/login')
@@ -41,6 +47,16 @@ async function signOut() {
         <NuxtLink to="/sources">Источники событий</NuxtLink>
         <NuxtLink to="/submit">Добавить событие</NuxtLink>
         <NuxtLink to="/promote">Организаторам</NuxtLink>
+        <nav class="social" aria-labelledby="social-title">
+          <span id="social-title" class="social-title">Мы в соцсетях:</span>
+          <a
+            v-for="link in socialLinks"
+            :key="link.href"
+            :href="link.href"
+            target="_blank"
+            rel="noopener noreferrer"
+          >{{ link.label }}</a>
+        </nav>
       </div>
     </footer>
   </div>
@@ -127,6 +143,17 @@ async function signOut() {
 .footer-row a {
   color: var(--muted);
 }
+/* Соцсети — отдельный блок: на узком экране своей строкой, на широком справа */
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  width: 100%;
+}
+.social-title {
+  color: var(--ink);
+  font-weight: 500;
+}
 
 @media (min-width: 720px) {
   .brand-note,
@@ -136,6 +163,10 @@ async function signOut() {
   .nav {
     order: 0;
     width: auto;
+  }
+  .social {
+    width: auto;
+    margin-left: auto;
   }
 }
 </style>
