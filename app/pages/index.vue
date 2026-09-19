@@ -14,28 +14,19 @@ const scenarios = [
 
 const more = [
   {
-    title: 'Не знаю, чего хочу',
-    note: 'Пара простых вопросов — и сервис сам сузит выбор',
-    to: '/quiz',
-    soon: false
-  },
-  {
     title: 'Собери мне вечер',
     note: 'Событие, ужин и прогулка рядом: маршрут с временем на дорогу и общей суммой',
-    to: '/evening',
-    soon: true
+    to: '/evening'
   },
   {
     title: 'Пермь, которую ты не знаешь',
     note: 'Необычные площадки и районные инициативы',
-    to: '/collection/neznakomaya-perm',
-    soon: true
+    to: '/collection/neznakomaya-perm'
   },
   {
     title: 'На выходные',
     note: 'Подборка на ближайшие субботу и воскресенье',
-    to: '/collection/na-vyhodnye',
-    soon: true
+    to: '/collection/na-vyhodnye'
   }
 ]
 </script>
@@ -64,6 +55,14 @@ const more = [
         <button type="button" class="link-button" @click="query = EXAMPLE">{{ EXAMPLE }}</button>
       </p>
       <p v-if="error" class="notice notice-danger">{{ error }}</p>
+
+      <NuxtLink to="/quiz" class="quiz-cta">
+        <span>
+          <strong>Не знаете, чего хочется?</strong>
+          <span class="quiz-cta-note">Ответьте на пару вопросов — каждый отсекает лишнее, а мы подберём остальное</span>
+        </span>
+        <span class="quiz-cta-arrow" aria-hidden="true">→</span>
+      </NuxtLink>
     </section>
 
     <section class="section">
@@ -86,7 +85,7 @@ const more = [
       <h2>Ещё способы выбрать</h2>
       <div class="grid">
         <NuxtLink v-for="item in more" :key="item.to" :to="item.to" class="tile">
-          <span v-if="item.soon" class="badge badge-stub">скоро</span>
+          <span class="badge badge-stub">скоро</span>
           <strong>{{ item.title }}</strong>
           <span class="muted">{{ item.note }}</span>
         </NuxtLink>
@@ -132,6 +131,35 @@ h1 {
 }
 .hint .link-button {
   text-align: left;
+}
+.quiz-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.quiz-cta:hover {
+  background: #f8dbd0;
+}
+.quiz-cta strong {
+  display: block;
+  font-size: 1.15rem;
+}
+.quiz-cta-note {
+  font-size: 0.95rem;
+}
+.quiz-cta-arrow {
+  flex: none;
+  font-size: 1.6rem;
+  font-weight: 700;
 }
 .section {
   margin-top: 2.25rem;
